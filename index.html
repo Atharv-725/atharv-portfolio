@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atharv Dorle — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <canvas id="particle-network"></canvas>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar">
+    <div class="nav-logo">AD</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-resume">
+      <a href="assets/Resume.pdf" target="_blank">Resume ↗</a>
+    </div>
+    <div class="view-toggle" id="viewToggle">
+      <button class="view-btn" data-view="desktop" aria-label="Desktop view" title="Desktop view">🖥</button>
+      <button class="view-btn" data-view="mobile" aria-label="Mobile view" title="Mobile view">📱</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="home">
+    <div class="hero-glow"></div>
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <p class="hero-greeting">👋 Hello, I'm</p>
+        <h1>Atharv <span>Dorle</span></h1>
+        <div class="typewriter-wrap">
+          <span id="typewriter"></span><span class="cursor">|</span>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-row">📍 <strong>Indore, Madhya Pradesh, India</strong></div>
+          <div class="hero-meta-row">💼 <strong>Code. Create. Conquer</strong></div>
+          <div class="hero-meta-row">📧 <strong>dorleatharv@gmail.com</strong></div>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/Atharv-725" target="_blank">⌥ GitHub</a>
+          <a href="https://linkedin.com/in/atharv-dorle-6552602b8" target="_blank">in LinkedIn</a>
+          <a href="mailto:dorleatharv@gmail.com">✉ Email</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-img-ring">
+          <img
+            src="assets/profile.jpeg"
+            alt="Atharv Dorle"
+            onerror="this.src='https://ui-avatars.com/api/?name=Atharv+Dorle&size=300&background=a855f7&color=fff&bold=true'"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="scroll-down" id="scrollDown">
+      <span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects">
+    <div class="container">
+      <div class="sec-header">
+        <h2 class="sec-title">🚀 <span>Projects</span></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="projects-grid" id="projGrid">
+
+        <div class="project-card">
+          <img src="assets/project1.png" alt="Credit Score Explainer" onerror="this.style.display='none'"/>
+          <div class="proj-body">
+            <h3>Credit Score Explainer</h3>
+            <p class="proj-desc">An interactive Streamlit app that predicts loan default risk from financial inputs using a Random Forest classifier, with real-time probability breakdowns.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">Random Forest</span>
+              <span class="tag">Scikit-learn</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/credit-score-explainer" target="_blank">Code →</a>
+              <a href="https://a725-credit-score-explainer.streamlit.app/" target="_blank">Live ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/project2.png" alt="ModelPulse" onerror="this.style.display='none'"/>
+          <div class="proj-body">
+            <h3>ModelPulse</h3>
+            <p class="proj-desc">A lightweight ML observability tool that detects data drift between a model's training-time (baseline) data and its live production data.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">ML Observability</span>
+              <span class="tag">Data Drift Detection</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/modelpulse" target="_blank">Code →</a>
+              <a href="https://modelpulse-tau.vercel.app" target="_blank">Live ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/project3.png" alt="Federated CV QC" onerror="this.style.display='none'"/>
+          <div class="proj-body">
+            <h3>Federated CV QC</h3>
+            <p class="proj-desc">Privacy-preserving industrial defect detection using Federated Learning, YOLOv8, and Differential Privacy — raw images never leave the factory.</p>
+            <div class="tags">
+              <span class="tag">Federated Learning</span>
+              <span class="tag">YOLOv8</span>
+              <span class="tag">Differential Privacy</span>
+              <span class="tag">Computer Vision</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/federated-cv-qc" target="_blank">Code →</a>
+              <a href="https://ad07-federated-cv-qc.streamlit.app/" target="_blank">Live ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/n8n-faceless-youtube-automation.png" alt="N8N Faceless YouTube Automation" onerror="this.style.display='none'"/>
+          <div class="proj-body">
+            <h3>N8N Faceless YouTube Automation</h3>
+            <p class="proj-desc">A fully automated pipeline that researches a topic, writes a script, generates images, creates a voiceover, assembles a video, and uploads it directly to YouTube Shorts — built entirely with free and open-source tools.</p>
+            <div class="tags">
+              <span class="tag">n8n</span>
+              <span class="tag">Automation</span>
+              <span class="tag">Docker</span>
+              <span class="tag">YouTube</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/n8n-faceless-youtube-automation" target="_blank">Code →</a>
+              <a href="https://www.youtube.com/channel/UCEUHxgu89hfFNxUN1N1D2pw" target="_blank">Channel ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-body">
+            <h3>Federated Learning Framework</h3>
+            <p class="proj-desc">Federated learning (FedAvg) from scratch in PyTorch — 10 simulated clients, CIFAR-10, with a real accuracy/privacy tradeoff measured via Differential Privacy.</p>
+            <div class="tags">
+              <span class="tag">PyTorch</span>
+              <span class="tag">Federated Learning</span>
+              <span class="tag">Differential Privacy</span>
+              <span class="tag">CIFAR-10</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/federated-learning-framework" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/n8n-image-generation.png" alt="N8N Image Generation Workflow" onerror="this.style.display='none'"/>
+          <div class="proj-body">
+            <h3>N8N Image Generation Workflow</h3>
+            <p class="proj-desc">An automated, multi-step AI workflow built in n8n that researches a topic, writes a social media post, generates a matching image, and delivers the finished result — all from a single trigger, with a human-in-the-loop review step before anything is published.</p>
+            <div class="tags">
+              <span class="tag">n8n</span>
+              <span class="tag">Automation</span>
+              <span class="tag">AI Agents</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/n8n--image-generation" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-body">
+            <h3>ScholarBot</h3>
+            <p class="proj-desc">A RAG-powered Q&amp;A app over academic PDF papers — ingests uploaded PDFs, chunks and embeds them with HuggingFace embeddings into a Chroma vector store, and answers questions through a Streamlit interface.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">LangChain</span>
+              <span class="tag">RAG</span>
+              <span class="tag">Streamlit</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/scholarbot" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/saathi.png" alt="Saathi Score" onerror="this.style.display='none'"/>
+          <div class="proj-body">
+            <h3>Saathi Score</h3>
+            <p class="proj-desc">A privacy-first alternative credit scoring platform for India's unbanked — street vendors, gig workers, and small farmers with no CIBIL history. Scores people on the financial life they actually live, letting multiple lenders train one shared model via federated learning without any raw customer data leaving their systems.</p>
+            <div class="tags">
+              <span class="tag">Federated Learning</span>
+              <span class="tag">FinTech</span>
+              <span class="tag">Credit Scoring</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/saathi-score" target="_blank">Code →</a>
+              <a href="https://saathi-score.vercel.app" target="_blank">Live ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-body">
+            <h3>Semantic Guard</h3>
+            <p class="proj-desc">A benchmark for detecting LLM hallucinations — combines NLI-based semantic signals with an LLM-as-judge (from a different model family than the one being evaluated, to avoid self-preference bias) to separate truthful answers from hallucinated ones.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">LLM Evaluation</span>
+              <span class="tag">Hallucination Detection</span>
+              <span class="tag">NLI</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/semantic-guard" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-body">
+            <h3>Adaptive FL Paper</h3>
+            <p class="proj-desc">A novel federated learning framework that integrates per-client ADWIN-based concept drift detection with dynamic client weighting during aggregation.</p>
+            <div class="tags">
+              <span class="tag">Federated Learning</span>
+              <span class="tag">Concept Drift</span>
+              <span class="tag">ADWIN</span>
+              <span class="tag">Python</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/adaptive-fl-paper" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-body">
+            <h3>FedMed Adaptive DP</h3>
+            <p class="proj-desc">FedMed is a federated learning framework for medical tabular data that introduces sensitivity-aware adaptive differential privacy.</p>
+            <div class="tags">
+              <span class="tag">Federated Learning</span>
+              <span class="tag">Differential Privacy</span>
+              <span class="tag">Healthcare</span>
+              <span class="tag">Python</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/fedmed-adaptive-dp" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-body">
+            <h3>Stock Market Pipeline</h3>
+            <p class="proj-desc">A production-grade real-time streaming pipeline that fetches live stock prices, streams them through Apache Kafka, stores them in PostgreSQL, and visualizes them on a Streamlit dashboard — fully containerized with Docker.</p>
+            <div class="tags">
+              <span class="tag">Apache Kafka</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">Docker</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/stock-market-pipeline" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-body">
+            <h3>News ETL Pipeline</h3>
+            <p class="proj-desc">A production-grade ETL pipeline that fetches live news, performs sentiment analysis, stores data in MySQL, and visualizes it on a Streamlit dashboard — fully containerized with Docker and automated with GitHub Actions.</p>
+            <div class="tags">
+              <span class="tag">ETL</span>
+              <span class="tag">Sentiment Analysis</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">GitHub Actions</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/news-etl-pipeline" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-body">
+            <h3>QAOA vs VQE Max-Cut Benchmark</h3>
+            <p class="proj-desc">Benchmarking QAOA against VQE on the Max-Cut problem using Qiskit and PennyLane.</p>
+            <div class="tags">
+              <span class="tag">Qiskit</span>
+              <span class="tag">PennyLane</span>
+              <span class="tag">Quantum Computing</span>
+              <span class="tag">QAOA</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/qaoa-vqe-maxcut-benchmark" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-body">
+            <h3>Loan Default Predictor</h3>
+            <p class="proj-desc">A machine learning project predicting whether a loan applicant will default, using real-world style financial features and comparing Logistic Regression against Random Forest models.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Scikit-learn</span>
+              <span class="tag">Logistic Regression</span>
+              <span class="tag">Random Forest</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Atharv-725/loan-default-predictor" target="_blank">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy the block above to add more projects -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="alt-bg">
+    <div class="container">
+      <div class="sec-header">
+        <h2 class="sec-title">🛠 <span>Skills</span></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/><span>Python</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"/><span>SQL</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"/><span>JavaScript</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"/><span>NumPy</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"/><span>Pandas</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn"/><span>Scikit-learn</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"/><span>HTML</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"/><span>CSS</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"/><span>Node.js</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"/><span>MySQL</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="DSA"/><span>DSA</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="OOPs"/><span>OOPs</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"/><span>PyTorch</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"/><span>TypeScript</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"/><span>Docker</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"/><span>PostgreSQL</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" alt="Apache Kafka"/><span>Kafka</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"/><span>GitHub Actions</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg" alt="Streamlit"/><span>Streamlit</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" alt="Jupyter"/><span>Jupyter</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section id="education">
+    <div class="container">
+      <div class="sec-header">
+        <h2 class="sec-title">🎓 <span>Education</span></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="edu-grid">
+
+        <div class="edu-card">
+          <img class="edu-logo-img" src="assets/college-logo.png" alt="College"
+               onerror="this.src='https://via.placeholder.com/400x145/1e1438/a855f7?text=SRMIST'"/>
+          <div class="edu-body">
+            <h3>B.Tech in Computer Science &amp; Engineering</h3>
+            <div class="edu-inst">SRM Institute of Science and Technology (SRMIST) — Final Year</div>
+            <p>Core computer science concepts, machine learning, data structures, algorithms, and web development.</p>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <img class="edu-logo-img" src="assets/college-logo.png" alt="SRM"
+               onerror="this.src='https://via.placeholder.com/400x145/1e1438/a855f7?text=SRMIST'"/>
+          <div class="edu-body">
+            <h3>Honours in Quantum Computing</h3>
+            <div class="edu-inst">SRM Institute of Science and Technology (SRMIST)</div>
+            <p>Additional honours specialization covering quantum computing fundamentals and applications alongside the core B.Tech curriculum.</p>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <img src="assets/school.png" alt="School"
+               onerror="this.src='https://via.placeholder.com/400x145/1e1438/a855f7?text=Ryan+International+School'"/>
+          <div class="edu-body">
+            <h3>Schooling</h3>
+            <div class="edu-inst">Ryan International School, Indore (2023)</div>
+            <p>Focused on Physics, Chemistry, Mathematics and groundwork for Computer Science.</p>
+          </div>
+        </div>
+
+        <!-- Copy above card to add more education -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CERTIFICATES ===== -->
+  <section id="certificates">
+    <div class="container">
+      <div class="sec-header">
+        <h2 class="sec-title">🎖 <span>Certificates</span></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card"><img src="assets/Data Analytics Process Automation Virtual Internship by Alteryx Sparked.png" alt="Data Analytics Process Automation Virtual Internship — Alteryx Sparked" loading="lazy"><h3>Data Analytics Process Automation Virtual Internship — Alteryx Sparked</h3><a href="assets/Data Analytics Process Automation Virtual Internship by Alteryx Sparked.pdf" target="_blank">View Certificate ↗</a></div>
+        <div class="cert-card"><img src="assets/Data Engineering Virtual Internship By AWS Academy.png" alt="Data Engineering Virtual Internship — AWS Academy" loading="lazy"><h3>Data Engineering Virtual Internship — AWS Academy</h3><a href="assets/Data Engineering Virtual Internship By AWS Academy.pdf" target="_blank">View Certificate ↗</a></div>
+        <div class="cert-card"><img src="assets/Data Science Master Virtual Intership by Altair.png" alt="Data Science Master Virtual Internship — Altair" loading="lazy"><h3>Data Science Master Virtual Internship — Altair</h3><a href="assets/Data Science Master Virtual Intership by Altair.pdf" target="_blank">View Certificate ↗</a></div>
+        <div class="cert-card"><img src="assets/Deloitte Data analysis Certificate.png" alt="Deloitte Data Analysis Certificate" loading="lazy"><h3>Deloitte Data Analysis Certificate</h3><a href="assets/Deloitte Data analysis Certificate.pdf" target="_blank">View Certificate ↗</a></div>
+        <div class="cert-card"><img src="assets/IBM data analysis with python.png" alt="IBM Data Analysis with Python" loading="lazy"><h3>IBM Data Analysis with Python</h3><a href="assets/IBM data analysis with python.pdf" target="_blank">View Certificate ↗</a></div>
+        <div class="cert-card"><img src="assets/IBM ML with python.png" alt="IBM Machine Learning with Python" loading="lazy"><h3>IBM Machine Learning with Python</h3><a href="assets/IBM ML with python.pdf" target="_blank">View Certificate ↗</a></div>
+        <div class="cert-card"><img src="assets/IBM Quantum Certifiate.png" alt="IBM Quantum Certificate" loading="lazy"><h3>IBM Quantum Certificate</h3><a href="assets/IBM Quantum Certifiate.pdf" target="_blank">View Certificate ↗</a></div>
+        <div class="cert-card"><img src="assets/Python for Data Science.png" alt="Python for Data Science" loading="lazy"><h3>Python for Data Science</h3><a href="assets/Python for Data Science.pdf" target="_blank">View Certificate ↗</a></div>
+        <!-- Copy a cert-card block to add more -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="alt-bg">
+    <div class="container">
+      <div class="sec-header">
+        <h2 class="sec-title">📬 <span>Contact</span></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:dorleatharv@gmail.com" aria-label="Email">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Gmail"/>
+        </a>
+        <a class="contact-card" href="https://github.com/Atharv-725" target="_blank" aria-label="GitHub">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"/>
+        </a>
+        <a class="contact-card" href="https://linkedin.com/in/atharv-dorle-6552602b8" target="_blank" aria-label="LinkedIn">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn"/>
+        </a>
+        <a class="contact-card" href="https://www.instagram.com/atharv_dorle07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Instagram">
+          <img src="https://cdn.simpleicons.org/instagram" alt="Instagram"/>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 • <strong>Atharv Dorle</strong> — Built with HTML, CSS &amp; JavaScript</p>
+    <a href="#home" class="back-top" id="backTop">↑ Back to top</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
