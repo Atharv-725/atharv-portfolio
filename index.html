@@ -4,7 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Atharv Dorle — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <meta name="description" content="Atharv Dorle — AI Enthusiast, Machine Learning Engineer, and Full Stack Developer. Discover projects in Federated Learning, Computer Vision, and Automation Pipelines." />
+  <meta name="keywords" content="Atharv Dorle, Machine Learning, Federated Learning, Deep Learning, Computer Vision, RAG, n8n, Streamlit, Portfolio" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Atharv Dorle — Portfolio" />
+  <meta property="og:description" content="AI Enthusiast, Machine Learning Engineer, and Full Stack Developer. Discover projects in Federated Learning, Computer Vision, and Automation Pipelines." />
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -25,9 +34,11 @@
     <div class="nav-resume">
       <a href="assets/Resume.pdf" target="_blank">Resume ↗</a>
     </div>
-    <div class="view-toggle" id="viewToggle">
-      <button class="view-btn" data-view="desktop" aria-label="Desktop view" title="Desktop view">🖥</button>
-      <button class="view-btn" data-view="mobile" aria-label="Mobile view" title="Mobile view">📱</button>
+    <div class="theme-customizer" id="themeCustomizer">
+      <button class="theme-dot active" data-theme="purple" style="background: linear-gradient(135deg, #a855f7, #ec4899);" title="Orchid Pink Theme"></button>
+      <button class="theme-dot" data-theme="cyber" style="background: linear-gradient(135deg, #06b6d4, #6366f1);" title="Cyberpunk Indigo Theme"></button>
+      <button class="theme-dot" data-theme="emerald" style="background: linear-gradient(135deg, #10b981, #06b6d4);" title="Teal Matrix Theme"></button>
+      <button class="theme-dot" data-theme="solar" style="background: linear-gradient(135deg, #f97316, #ef4444);" title="Solar Orange Theme"></button>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -77,10 +88,20 @@
         <h2 class="sec-title"><span>Projects</span></h2>
         <div class="sec-line"></div>
       </div>
+      
+      <!-- Project Category Filter Tabs -->
+      <div class="projects-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="federated">Federated Learning</button>
+        <button class="filter-btn" data-filter="ml-ai">ML &amp; AI</button>
+        <button class="filter-btn" data-filter="pipelines">Data &amp; Automation</button>
+        <button class="filter-btn" data-filter="quantum">Quantum Computing</button>
+      </div>
+
       <div class="projects-grid" id="projGrid">
 
-        <div class="project-card">
-          <img src="assets/project1.png" alt="Credit Score Explainer" onerror="this.style.display='none'"/>
+        <div class="project-card" data-category="ml-ai">
+          <img src="assets/project1.png" alt="Credit Score Explainer" onerror="this.style.display='none'" loading="lazy"/>
           <div class="proj-body">
             <h3>Credit Score Explainer</h3>
             <p class="proj-desc">An interactive Streamlit app that predicts loan default risk from financial inputs using a Random Forest classifier, with real-time probability breakdowns.</p>
@@ -97,8 +118,8 @@
           </div>
         </div>
 
-        <div class="project-card">
-          <img src="assets/project2.png" alt="ModelPulse" onerror="this.style.display='none'"/>
+        <div class="project-card" data-category="ml-ai">
+          <img src="assets/project2.png" alt="ModelPulse" onerror="this.style.display='none'" loading="lazy"/>
           <div class="proj-body">
             <h3>ModelPulse</h3>
             <p class="proj-desc">A lightweight ML observability tool that detects data drift between a model's training-time (baseline) data and its live production data.</p>
@@ -114,8 +135,8 @@
           </div>
         </div>
 
-        <div class="project-card">
-          <img src="assets/project3.png" alt="Federated CV QC" onerror="this.style.display='none'"/>
+        <div class="project-card" data-category="federated">
+          <img src="assets/project3.png" alt="Federated CV QC" onerror="this.style.display='none'" loading="lazy"/>
           <div class="proj-body">
             <h3>Federated CV QC</h3>
             <p class="proj-desc">Privacy-preserving industrial defect detection using Federated Learning, YOLOv8, and Differential Privacy — raw images never leave the factory.</p>
@@ -132,8 +153,8 @@
           </div>
         </div>
 
-        <div class="project-card">
-          <img src="assets/n8n-faceless-youtube-automation.png" alt="N8N Faceless YouTube Automation" onerror="this.style.display='none'"/>
+        <div class="project-card" data-category="pipelines">
+          <img src="assets/n8n-faceless-youtube-automation.png" alt="N8N Faceless YouTube Automation" onerror="this.style.display='none'" loading="lazy"/>
           <div class="proj-body">
             <h3>N8N Faceless YouTube Automation</h3>
             <p class="proj-desc">A fully automated pipeline that researches a topic, writes a script, generates images, creates a voiceover, assembles a video, and uploads it directly to YouTube Shorts — built entirely with free and open-source tools.</p>
@@ -150,7 +171,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-category="federated">
           <div class="proj-body">
             <h3>Federated Learning Framework</h3>
             <p class="proj-desc">Federated learning (FedAvg) from scratch in PyTorch — 10 simulated clients, CIFAR-10, with a real accuracy/privacy tradeoff measured via Differential Privacy.</p>
@@ -166,8 +187,8 @@
           </div>
         </div>
 
-        <div class="project-card">
-          <img src="assets/n8n-image-generation.png" alt="N8N Image Generation Workflow" onerror="this.style.display='none'"/>
+        <div class="project-card" data-category="pipelines">
+          <img src="assets/n8n-image-generation.png" alt="N8N Image Generation Workflow" onerror="this.style.display='none'" loading="lazy"/>
           <div class="proj-body">
             <h3>N8N Image Generation Workflow</h3>
             <p class="proj-desc">An automated, multi-step AI workflow built in n8n that researches a topic, writes a social media post, generates a matching image, and delivers the finished result — all from a single trigger, with a human-in-the-loop review step before anything is published.</p>
@@ -182,8 +203,8 @@
           </div>
         </div>
 
-        <div class="project-card">
-          <img src="assets/Scholar Bot.png" alt="Scholar Bot" onerror="this.style.display='none'"/>
+        <div class="project-card" data-category="ml-ai">
+          <img src="assets/Scholar Bot.png" alt="Scholar Bot" onerror="this.style.display='none'" loading="lazy"/>
           <div class="proj-body">
             <h3>ScholarBot</h3>
             <p class="proj-desc">A RAG-powered Q &amp; A app over academic PDF papers ingests uploaded PDFs, chunks and embeds them with HuggingFace embeddings into a Chroma vector store, and answers questions through a Streamlit interface.</p>
@@ -200,8 +221,8 @@
           </div>
         </div>
 
-        <div class="project-card">
-          <img src="assets/saathi.png" alt="Saathi Score" onerror="this.style.display='none'"/>
+        <div class="project-card" data-category="federated">
+          <img src="assets/saathi.png" alt="Saathi Score" onerror="this.style.display='none'" loading="lazy"/>
           <div class="proj-body">
             <h3>Saathi Score</h3>
             <p class="proj-desc">A privacy-first alternative credit scoring platform for India's unbanked — street vendors, gig workers, and small farmers with no CIBIL history. Scores people on the financial life they actually live, letting multiple lenders train one shared model via federated learning without any raw customer data leaving their systems.</p>
@@ -218,7 +239,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-category="ml-ai">
           <div class="proj-body">
             <h3>Semantic Guard</h3>
             <p class="proj-desc">A benchmark for detecting LLM hallucinations — combines NLI-based semantic signals with an LLM-as-judge (from a different model family than the one being evaluated, to avoid self-preference bias) to separate truthful answers from hallucinated ones.</p>
@@ -234,7 +255,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-category="federated">
           <div class="proj-body">
             <h3>Adaptive FL Paper</h3>
             <p class="proj-desc">A novel federated learning framework that integrates per-client ADWIN-based concept drift detection with dynamic client weighting during aggregation.</p>
@@ -250,7 +271,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-category="federated">
           <div class="proj-body">
             <h3>FedMed Adaptive DP</h3>
             <p class="proj-desc">FedMed is a federated learning framework for medical tabular data that introduces sensitivity-aware adaptive differential privacy.</p>
@@ -266,7 +287,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-category="pipelines">
           <div class="proj-body">
             <h3>Stock Market Pipeline</h3>
             <p class="proj-desc">A production-grade real-time streaming pipeline that fetches live stock prices, streams them through Apache Kafka, stores them in PostgreSQL, and visualizes them on a Streamlit dashboard — fully containerized with Docker.</p>
@@ -282,7 +303,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-category="pipelines">
           <div class="proj-body">
             <h3>News ETL Pipeline</h3>
             <p class="proj-desc">A production-grade ETL pipeline that fetches live news, performs sentiment analysis, stores data in MySQL, and visualizes it on a Streamlit dashboard — fully containerized with Docker and automated with GitHub Actions.</p>
@@ -298,7 +319,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-category="quantum">
           <div class="proj-body">
             <h3>QAOA vs VQE Max-Cut Benchmark</h3>
             <p class="proj-desc">Benchmarking QAOA against VQE on the Max-Cut problem using Qiskit and PennyLane.</p>
@@ -314,7 +335,7 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-category="ml-ai">
           <div class="proj-body">
             <h3>Loan Default Predictor</h3>
             <p class="proj-desc">A machine learning project predicting whether a loan applicant will default, using real-world style financial features and comparing Logistic Regression against Random Forest models.</p>
@@ -329,8 +350,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Copy the block above to add more projects -->
 
       </div>
     </div>
@@ -453,6 +472,9 @@
         </a>
         <a class="contact-card" href="https://www.instagram.com/atharv_dorle07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Instagram">
           <img src="https://cdn.simpleicons.org/instagram" alt="Instagram"/>
+        </a>
+        <a class="contact-card" href="https://www.credly.com/users/atharv-dorle" target="_blank" aria-label="Credly">
+          <img src="https://cdn.simpleicons.org/credly" alt="Credly"/>
         </a>
       </div>
     </div>

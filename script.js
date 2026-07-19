@@ -133,6 +133,32 @@ const revealObserver = new IntersectionObserver((entries) => {
 projectCards.forEach(card => revealObserver.observe(card));
 
 /* =============================================
+   4b. PROJECT FILTERING — Category tabs
+   ============================================= */
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove active class from all filter buttons
+    filterButtons.forEach(b => b.classList.remove('active'));
+    // Add active class to clicked button
+    btn.classList.add('active');
+
+    const filterValue = btn.getAttribute('data-filter');
+
+    projectCards.forEach(card => {
+      const category = card.getAttribute('data-category');
+      if (filterValue === 'all' || category === filterValue) {
+        card.classList.remove('filtered-out');
+        card.classList.add('visible');
+      } else {
+        card.classList.add('filtered-out');
+      }
+    });
+  });
+});
+
+/* =============================================
    5. SCROLL REVEAL — education, cert, contact cards
    ============================================= */
 const fadeEls = document.querySelectorAll(
@@ -301,31 +327,80 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* =============================================
-   15. VIEW TOGGLE — force desktop / mobile layout
+   15. THEME CUSTOMIZER — Change accent colors dynamically
    ============================================= */
-const viewButtons = document.querySelectorAll('.view-btn');
-
-function applyView(view) {
-  if (view === 'desktop' || view === 'mobile') {
-    document.documentElement.setAttribute('data-view', view);
-    localStorage.setItem('portfolioView', view);
-  } else {
-    document.documentElement.removeAttribute('data-view');
-    localStorage.removeItem('portfolioView');
+const themeDefs = {
+  purple: {
+    accent: '#a855f7',
+    accent2: '#ec4899',
+    accent3: '#22d3ee',
+    border: 'rgba(236, 72, 153, 0.22)',
+    card: 'rgba(30, 20, 56, 0.55)',
+    tagBg: 'rgba(168, 85, 247, 0.14)',
+    tagColor: '#e3c9ff',
+    tagBorder: 'rgba(168, 85, 247, 0.35)'
+  },
+  cyber: {
+    accent: '#06b6d4',
+    accent2: '#6366f1',
+    accent3: '#ec4899',
+    border: 'rgba(99, 102, 241, 0.25)',
+    card: 'rgba(12, 20, 46, 0.55)',
+    tagBg: 'rgba(6, 182, 212, 0.14)',
+    tagColor: '#cffafe',
+    tagBorder: 'rgba(6, 182, 212, 0.35)'
+  },
+  emerald: {
+    accent: '#10b981',
+    accent2: '#06b6d4',
+    accent3: '#eab308',
+    border: 'rgba(6, 182, 212, 0.25)',
+    card: 'rgba(12, 38, 28, 0.55)',
+    tagBg: 'rgba(16, 185, 129, 0.14)',
+    tagColor: '#d1fae5',
+    tagBorder: 'rgba(16, 185, 129, 0.35)'
+  },
+  solar: {
+    accent: '#f97316',
+    accent2: '#ef4444',
+    accent3: '#ec4899',
+    border: 'rgba(239, 68, 68, 0.25)',
+    card: 'rgba(46, 18, 12, 0.55)',
+    tagBg: 'rgba(249, 115, 22, 0.14)',
+    tagColor: '#ffedd5',
+    tagBorder: 'rgba(249, 115, 22, 0.35)'
   }
-  viewButtons.forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.view === view);
+};
+
+const themeDots = document.querySelectorAll('.theme-dot');
+
+function applyTheme(themeName) {
+  const definition = themeDefs[themeName] || themeDefs.purple;
+  const root = document.documentElement;
+
+  root.style.setProperty('--accent', definition.accent);
+  root.style.setProperty('--accent2', definition.accent2);
+  root.style.setProperty('--accent3', definition.accent3);
+  root.style.setProperty('--border', definition.border);
+  root.style.setProperty('--card', definition.card);
+  root.style.setProperty('--tag-bg', definition.tagBg);
+  root.style.setProperty('--tag-color', definition.tagColor);
+  root.style.setProperty('--tag-border', definition.tagBorder);
+
+  themeDots.forEach(dot => {
+    dot.classList.toggle('active', dot.dataset.theme === themeName);
   });
+
+  localStorage.setItem('portfolioTheme', themeName);
 }
 
-viewButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const isActive = btn.classList.contains('active');
-    applyView(isActive ? null : btn.dataset.view);
+themeDots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    applyTheme(dot.dataset.theme);
   });
 });
 
-applyView(localStorage.getItem('portfolioView'));
+applyTheme(localStorage.getItem('portfolioTheme') || 'purple');
 
 /* =============================================
    16. PARTICLE NETWORK BACKGROUND — animated tech grid
@@ -424,11 +499,36 @@ applyView(localStorage.getItem('portfolioView'));
     }, 150);
   });
 
+  let isCanvasVisible = true;
+  const canvasObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isCanvasVisible = entry.isIntersecting;
+      if (isCanvasVisible) {
+        if (!animationId && !reduceMotion) {
+          step();
+        }
+      } else {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+      }
+    });
+  }, { threshold: 0 });
+
+  const homeSection = document.getElementById('home');
+  if (homeSection) {
+    canvasObserver.observe(homeSection);
+  }
+
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      if (animationId) cancelAnimationFrame(animationId);
+    if (document.hidden || !isCanvasVisible) {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
     } else if (!reduceMotion) {
-      step();
+      if (!animationId) step();
     }
   });
 
@@ -436,6 +536,7 @@ applyView(localStorage.getItem('portfolioView'));
   if (reduceMotion) {
     drawStatic();
   } else {
-    step();
+    // Animation is now started dynamically by the canvasObserver on load
+    if (reduceMotion) drawStatic();
   }
 })();
