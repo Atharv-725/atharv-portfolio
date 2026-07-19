@@ -132,31 +132,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 projectCards.forEach(card => revealObserver.observe(card));
 
-/* =============================================
-   4b. PROJECT FILTERING — Category tabs
-   ============================================= */
-const filterButtons = document.querySelectorAll('.filter-btn');
 
-filterButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Remove active class from all filter buttons
-    filterButtons.forEach(b => b.classList.remove('active'));
-    // Add active class to clicked button
-    btn.classList.add('active');
-
-    const filterValue = btn.getAttribute('data-filter');
-
-    projectCards.forEach(card => {
-      const category = card.getAttribute('data-category');
-      if (filterValue === 'all' || category === filterValue) {
-        card.classList.remove('filtered-out');
-        card.classList.add('visible');
-      } else {
-        card.classList.add('filtered-out');
-      }
-    });
-  });
-});
 
 /* =============================================
    5. SCROLL REVEAL — education, cert, contact cards
