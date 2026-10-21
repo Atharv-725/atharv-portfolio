@@ -53,6 +53,18 @@ navItems.forEach(item => {
   mobileNav.appendChild(a);
 });
 
+// Mobile Resume link
+const mobileResume = document.createElement('a');
+mobileResume.href = 'assets/Resume.pdf';
+mobileResume.target = '_blank';
+mobileResume.textContent = 'Resume ↗';
+mobileResume.classList.add('mobile-resume');
+mobileResume.addEventListener('click', (e) => {
+  closeMobileNav();
+  handleResumeClick.call(mobileResume, e);
+});
+mobileNav.appendChild(mobileResume);
+
 document.body.appendChild(mobileNav);
 
 hamburger.addEventListener('click', () => {
@@ -211,19 +223,36 @@ navLinks.forEach(link => {
 // Already handled in CSS via .cursor class animation
 
 /* =============================================
-   11. PAGE LOAD — smooth reveal of hero section
+   11. DYNAMIC FOOTER YEAR
    ============================================= */
-window.addEventListener('load', () => {
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.4s ease';
-  setTimeout(() => {
-    document.body.style.opacity = '1';
-  }, 50);
-});
+const yearEl = document.getElementById('current-year');
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
 
 /* =============================================
-   12. COPY EMAIL — click on email contact card
+   12. RESUME HANDLER & COPY EMAIL
    ============================================= */
+function handleResumeClick(e) {
+  const href = this.getAttribute('href');
+  if (!href) return;
+  fetch(href, { method: 'HEAD' })
+    .then(resp => {
+      if (!resp.ok) {
+        e.preventDefault();
+        showToast('📄 Resume will be available shortly! Please connect via LinkedIn or Email.');
+      }
+    })
+    .catch(() => {
+      e.preventDefault();
+      showToast('📄 Resume will be available shortly! Please connect via LinkedIn or Email.');
+    });
+}
+
+document.querySelectorAll('a[href*="Resume.pdf"]').forEach(link => {
+  link.addEventListener('click', handleResumeClick);
+});
+
 const contactCards = document.querySelectorAll('.contact-card');
 
 contactCards.forEach(card => {
@@ -259,15 +288,17 @@ function showToast(message) {
     position:     'fixed',
     bottom:       '2rem',
     right:        '2rem',
-    background:   'linear-gradient(135deg, #a855f7, #ec4899)',
+    background:   'var(--gradient)',
     color:        '#fff',
-    padding:      '0.7rem 1.2rem',
-    borderRadius: '8px',
-    fontSize:     '0.85rem',
+    padding:      '0.75rem 1.3rem',
+    borderRadius: '10px',
+    fontSize:     '0.88rem',
     fontWeight:   '600',
     fontFamily:   "'Poppins', sans-serif",
     zIndex:       '9999',
-    boxShadow:    '0 4px 20px rgba(236,72,153,0.35)',
+    boxShadow:    '0 8px 30px rgba(0, 0, 0, 0.45)',
+    border:       '1px solid rgba(255, 255, 255, 0.2)',
+    backdropFilter: 'blur(10px)',
     opacity:      '0',
     transform:    'translateY(10px)',
     transition:   'all 0.3s ease',
@@ -281,12 +312,12 @@ function showToast(message) {
     toast.style.transform = 'translateY(0)';
   }, 10);
 
-  // Animate out after 2.5s
+  // Animate out after 2.8s
   setTimeout(() => {
     toast.style.opacity   = '0';
     toast.style.transform = 'translateY(10px)';
     setTimeout(() => toast.remove(), 300);
-  }, 2500);
+  }, 2800);
 }
 
 /* =============================================
@@ -368,6 +399,10 @@ function applyTheme(themeName) {
   });
 
   localStorage.setItem('portfolioTheme', themeName);
+
+  if (window.updateParticleTheme) {
+    window.updateParticleTheme(definition.accent, definition.accent2, definition.accent3);
+  }
 }
 
 themeDots.forEach(dot => {
@@ -386,9 +421,24 @@ applyTheme(localStorage.getItem('portfolioTheme') || 'purple');
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
-  const colors = ['#a855f7', '#ec4899', '#22d3ee'];
+  let themeColors = ['#a855f7', '#ec4899', '#22d3ee'];
+  let linkRgb = '180, 140, 255';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const LINK_DIST = 170;
+
+  function hexToRgb(hex) {
+    const clean = hex.replace('#', '');
+    const num = parseInt(clean, 16);
+    return `${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}`;
+  }
+
+  window.updateParticleTheme = function(c1, c2, c3) {
+    themeColors = [c1, c2, c3];
+    linkRgb = hexToRgb(c1);
+    particles.forEach(p => {
+      p.color = themeColors[Math.floor(Math.random() * themeColors.length)];
+    });
+  };
 
   let particles = [];
   let width, height, dpr;
@@ -404,14 +454,14 @@ applyTheme(localStorage.getItem('portfolioTheme') || 'purple');
     canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const count = Math.min(150, Math.max(45, Math.round((width * height) / 10000)));
+    const count = Math.min(130, Math.max(40, Math.round((width * height) / 11000)));
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * 0.35,
       vy: (Math.random() - 0.5) * 0.35,
       r: Math.random() * 1.6 + 0.9,
-      color: colors[Math.floor(Math.random() * colors.length)],
+      color: themeColors[Math.floor(Math.random() * themeColors.length)],
     }));
   }
 
@@ -436,7 +486,7 @@ applyTheme(localStorage.getItem('portfolioTheme') || 'purple');
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = 'rgba(180, 140, 255, ' + (0.5 * (1 - dist / LINK_DIST)) + ')';
+          ctx.strokeStyle = `rgba(${linkRgb}, ${0.45 * (1 - dist / LINK_DIST)})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -475,30 +525,8 @@ applyTheme(localStorage.getItem('portfolioTheme') || 'purple');
     }, 150);
   });
 
-  let isCanvasVisible = true;
-  const canvasObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      isCanvasVisible = entry.isIntersecting;
-      if (isCanvasVisible) {
-        if (!animationId && !reduceMotion) {
-          step();
-        }
-      } else {
-        if (animationId) {
-          cancelAnimationFrame(animationId);
-          animationId = null;
-        }
-      }
-    });
-  }, { threshold: 0 });
-
-  const homeSection = document.getElementById('home');
-  if (homeSection) {
-    canvasObserver.observe(homeSection);
-  }
-
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden || !isCanvasVisible) {
+    if (document.hidden) {
       if (animationId) {
         cancelAnimationFrame(animationId);
         animationId = null;
@@ -512,7 +540,11 @@ applyTheme(localStorage.getItem('portfolioTheme') || 'purple');
   if (reduceMotion) {
     drawStatic();
   } else {
-    // Animation is now started dynamically by the canvasObserver on load
-    if (reduceMotion) drawStatic();
+    step();
   }
+
+  // Sync initial theme colors with particles
+  const currentSaved = localStorage.getItem('portfolioTheme') || 'purple';
+  const def = themeDefs[currentSaved] || themeDefs.purple;
+  window.updateParticleTheme(def.accent, def.accent2, def.accent3);
 })();

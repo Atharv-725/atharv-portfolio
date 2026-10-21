@@ -306,6 +306,23 @@ section {
 
 .mobile-nav a:hover { color: var(--accent2); }
 
+.mobile-nav a.mobile-resume {
+  margin-top: 0.5rem;
+  background: var(--gradient);
+  color: #fff;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1rem;
+  border-bottom: none;
+  font-weight: 600;
+  box-shadow: 0 4px 18px rgba(236, 72, 153, 0.25);
+}
+
+.mobile-nav a.mobile-resume:hover {
+  filter: brightness(1.12);
+  color: #fff;
+}
+
 /* =============================================
    HERO
    ============================================= */
@@ -549,6 +566,7 @@ section {
 }
 
 .project-card {
+  position: relative;
   background: var(--card);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -858,9 +876,10 @@ section {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: top;
+  object-position: center;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
+  background: var(--bg3);
 }
 
 .cert-card::before {
